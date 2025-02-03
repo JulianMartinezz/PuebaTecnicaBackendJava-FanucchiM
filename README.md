@@ -4,7 +4,7 @@
 Develop a medical records management system for the HR department by implementing a RESTful API that allows management of employee medical records.
 
 ## Mandatory Technical Requirements
-- .NET 8
+- JAVA 17+
 - PostgreSQL **(local environment)**
 - Entity Framework Core (Database First, Fluent API)
 - AutoMapper
