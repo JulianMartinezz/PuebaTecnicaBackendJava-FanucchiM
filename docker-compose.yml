@@ -1,0 +1,36 @@
+version: '3.8'
+
+
+
+services:
+  # Servicio de PostgreSQL
+  postgres-container:
+    image: postgres:15 # Usa la imagen oficial de PostgreSQL
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: postgres      # Nombre de la base de datos
+      POSTGRES_USER: postgres          # Usuario de la base de datos
+      POSTGRES_PASSWORD: 1234      # Contraseña del usuario
+    ports:
+      - "5432:5432"                          # Mapea el puerto 5432 del contenedor al puerto 5432 de tu máquina local
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+  app:
+    build:
+      context: .                            # Usa el Dockerfile en el directorio actual
+      dockerfile: Dockerfile
+    container_name: springboot-app
+    ports:
+      - "8086:8085"
+    depends_on:
+      - postgres-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-container:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+    restart: always
+
+volumes:
+    posgres_data:
