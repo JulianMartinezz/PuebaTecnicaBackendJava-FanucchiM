@@ -457,14 +457,18 @@ HTTP Response Code for successful operation:
 Additional HTTP Response Codes:
 If any complications arise while using an endpoint, these are the possible response codes:
 
-400 Bad Request: Validation errors
-404 Not Found: Resource not found
-500 Internal Server Error: Unhandled errors
+400 Bad Request: Validation errors.
+
+404 Not Found: Resource not found.
+
+500 Internal Server Error: Unhandled errors.
 
 
 How to Run the Project?
 
+
 If You Have Docker:
+
 -Use the command in the terminal:
 docker-compose up --build
 Important: When running the command in the terminal, you must be located at the same level as the Dockerfile.
