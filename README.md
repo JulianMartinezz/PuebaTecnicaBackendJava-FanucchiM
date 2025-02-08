@@ -465,8 +465,10 @@ If any complications arise while using an endpoint, these are the possible respo
 How to Run the Project?
 
 If You Have Docker:
-Use the command in the terminal:
+-Use the command in the terminal:
 docker-compose up --build
+Important: When running the command in the terminal, you must be located at the same level as the Dockerfile.
+
 
 
 If You Don’t Have Docker:
