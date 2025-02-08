@@ -1,4 +1,4 @@
-name: .NET 8 Compile
+name: Java Spring Boot CI
 
 on:
   push:
@@ -7,28 +7,36 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET 8
-      uses: actions/setup-dotnet@v3
+    
+    - name: Setup Java
+      uses: actions/setup-java@v3
       with:
-        dotnet-version: '8.0.x'
-    - name: Find solution file
-      id: find-sln
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+    
+    - name: Find pom.xml
+      id: find-pom
       run: |
-        # Busca el archivo .sln dentro del repositorio
-        FILE=$(find . -name "*.sln" | head -n 1)
+        # Find the pom.xml file in the repository
+        FILE=$(find . -name "pom.xml" | head -n 1)
         if [ -z "$FILE" ]; then
-          echo "No se encontró un archivo .sln en el repositorio."
+          echo "No pom.xml file found in the repository."
           exit 1
         fi
-        echo "Archivo de solución encontrado: $FILE"
-        echo "sln-path=$FILE" >> $GITHUB_ENV
+        echo "POM file found: $FILE"
+        echo "pom-path=$FILE" >> $GITHUB_ENV
+    
     - name: Restore dependencies
-      run: dotnet restore ${{ env.sln-path }}
+      run: mvn clean dependency:resolve -f ${{ env.pom-path }}
+    
     - name: Build the project
-      run: dotnet build --no-restore ${{ env.sln-path }}
+      run: mvn clean package -f ${{ env.pom-path }} -DskipTests
+    
+    - name: Run tests
+      run: mvn test -f ${{ env.pom-path }}
