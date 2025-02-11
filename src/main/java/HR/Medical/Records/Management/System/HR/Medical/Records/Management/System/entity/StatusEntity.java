@@ -38,6 +38,10 @@ public class StatusEntity {
         this.name = name;
     }
 
+    public StatusEntity(Long statusId) {
+        this.statusId = statusId;
+    }
+
     // Getters and Setters
     public Long getStatusId() {
         return statusId;

@@ -32,6 +32,10 @@ public class MedicalRecordTypeEntity {
     private List<MedicalRecordEntity> records;
 
 
+    public MedicalRecordTypeEntity(Long medicalRecordTypeId) {
+        this.medicalRecordTypeId = medicalRecordTypeId;
+    }
+
     //Getters and Setters
     public Long getMedicalRecordTypeId() {
         return medicalRecordTypeId;
