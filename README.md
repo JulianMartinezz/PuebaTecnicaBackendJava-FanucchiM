@@ -229,6 +229,16 @@ Swagger for API documentation
 Jakarta Bean Validation (equivalent to FluentValidation)
 
 
+
+feat: integrate ModelMapper for streamlined DTO-Entity mapping
+
+- Implemented ModelMapper configuration in the service layer for MedicalRecord-related operations.
+- Refactored the update and delete methods in the service layer to use ModelMapper for DTO-to-Entity mapping.
+- Ensured seamless integration without altering existing validation logic.
+- Improved maintainability and reduced boilerplate code by adopting ModelMapper for automatic property mapping.
+
+
+
 ⚙️ Installation Instructions
 1. Local PostgreSQL Installation
    Before running the project, ensure you have PostgreSQL installed on your local machine. Follow these steps:
