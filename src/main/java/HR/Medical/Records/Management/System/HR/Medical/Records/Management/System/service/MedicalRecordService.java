@@ -175,10 +175,10 @@ public class MedicalRecordService {
 
 
 
-            medicalRecordEntity.setStatus(new StatusEntity(2L, "inactivo"));  // Suponiendo que 2 es el ID para "Inactive"
+            medicalRecordEntity.setStatus(new StatusEntity(2L, "inactivo"));  
             medicalRecordEntity.setDeletionReason(deletionReason);
-            medicalRecordEntity.setDeletionDate(LocalDate.now());  // Fecha de eliminación actual
-            medicalRecordEntity.setDeletedBy(deletedBy);  // Usuario que realiza la eliminación
+            medicalRecordEntity.setDeletionDate(LocalDate.now());  
+            medicalRecordEntity.setDeletedBy(deletedBy);  
             medicalRecordEntity.setEndDate(endDate);
 
             medicalRecordRepository.save(medicalRecordEntity);
