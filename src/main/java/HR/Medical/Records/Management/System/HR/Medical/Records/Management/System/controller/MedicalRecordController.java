@@ -37,8 +37,8 @@ public class MedicalRecordController {
     /// Retrieves a list of medical records based on the provided filters.
     @GetMapping("/filter")
     public ResponseEntity<BaseResponse<Page<MedicalRecordResponseDTO>>> obtenerTodosConFiltros(
-            @RequestParam int page, // Obligatorio
-            @RequestParam int pageSize, // Obligatorio
+            @RequestParam int page,
+            @RequestParam int pageSize,
             @RequestParam(required = false) Long statusId,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -54,14 +54,14 @@ public class MedicalRecordController {
                 return ResponseEntity.badRequest().body(response);
             }
 
-            // Crear un objeto Pageable para la paginación
+           
             Pageable pageable = PageRequest.of(page, pageSize);
 
-            // Llamar al servicio para obtener los expedientes filtrados
+           
             Page<MedicalRecordResponseDTO> recordsPage = medicalRecordService.findFiltered(
                     statusId, startDate, endDate, medicalRecordTypeId, pageable);
 
-            // Configurar la respuesta exitosa
+            
             response.setSuccess(true);
             response.setMessage("Medical records retrieved successfully.");
             response.setData(recordsPage);
@@ -78,7 +78,6 @@ public class MedicalRecordController {
             // Registrar la excepción completa
             e.printStackTrace();
 
-            // Configurar la respuesta de error inesperado
             response.setSuccess(false);
             response.setMessage("An unexpected error occurred while retrieving the medical records.");
             response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -205,7 +204,6 @@ public class MedicalRecordController {
         } catch (Exception e) {
             e.printStackTrace();
 
-            // Configurar la respuesta de error inesperado
             response.setSuccess(false);
             response.setMessage("An unexpected error occurred while updating the medical record.");
             response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
